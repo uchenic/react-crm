@@ -20,7 +20,7 @@ import {
     Button
 } from '@mui/material'
 import { useQuill } from 'react-quilljs';
-import 'quill/dist/quill.snow.css';
+import 'react-quill/dist/quill.snow.css';
 import { OpportunityUrl } from '../../services/ApiUrls'
 import { fetchData } from '../../components/FetchData'
 import { CustomAppBar } from '../../components/CustomAppBar'

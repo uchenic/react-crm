@@ -21,7 +21,7 @@ import {
     Button
 } from '@mui/material'
 import { useQuill } from 'react-quilljs';
-import 'quill/dist/quill.snow.css';
+import 'react-quill/dist/quill.snow.css';
 import { LeadUrl } from '../../services/ApiUrls'
 import { fetchData, Header } from '../../components/FetchData'
 import { CustomAppBar } from '../../components/CustomAppBar'
