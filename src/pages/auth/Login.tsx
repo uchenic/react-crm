@@ -1,25 +1,26 @@
+import React from 'react';
 import { useEffect, useState } from 'react'
 import { Grid, Stack, Typography } from '@mui/material'
-import { useGoogleLogin } from '@react-oauth/google';
+// import { useGoogleLogin } from '@react-oauth/google';
 import { useNavigate } from 'react-router-dom';
-import imgGoogle from '../../assets/images/auth/google.svg'
+// import imgGoogle from '../../assets/images/auth/google.svg'
 import imgLogo from '../../assets/images/auth/img_logo.png'
 import imgLogin from '../../assets/images/auth/img_login.png'
-import { GoogleButton } from '../../styles/CssStyled';
-import { fetchData } from '../../components/FetchData';
-import { AuthUrl } from '../../services/ApiUrls';
+// import { GoogleButton } from '../../styles/CssStyled';
+// import { fetchData } from '../../components/FetchData';
+// import { AuthUrl } from '../../services/ApiUrls';
 import '../../styles/style.css'
 
-declare global {
-    interface Window {
-        google: any;
-        gapi: any;
-    }
-}
+// declare global {
+//     interface Window {
+//         google: any;
+//         gapi: any;
+//     }
+// }
 
 export default function Login() {
     const navigate = useNavigate()
-    const [token, setToken] = useState(false)
+    const [token] = useState(false)
 
     useEffect(() => {
         if (localStorage.getItem('Token')) {
@@ -28,26 +29,26 @@ export default function Login() {
         }
     }, [token])
 
-    const login = useGoogleLogin({
-        onSuccess: tokenResponse => {
-            const apiToken = { token: tokenResponse.access_token }
-            // const formData = new FormData()
-            // formData.append('token', tokenResponse.access_token)
-            const head = {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            }
-            fetchData(`${AuthUrl}/`, 'POST', JSON.stringify(apiToken), head)
-                .then((res: any) => {
-                    localStorage.setItem('Token', `Bearer ${res.access_token}`)
-                    setToken(true)
-                })
-                .catch((error: any) => {
-                    console.error('Error:', error)
-                })
-        },
+    // const login = useGoogleLogin({
+    //     onSuccess: tokenResponse => {
+    //         const apiToken = { token: tokenResponse.access_token }
+    //         // const formData = new FormData()
+    //         // formData.append('token', tokenResponse.access_token)
+    //         const head = {
+    //             'Accept': 'application/json',
+    //             'Content-Type': 'application/json'
+    //         }
+    //         fetchData(`${AuthUrl}/`, 'POST', JSON.stringify(apiToken), head)
+    //             .then((res: any) => {
+    //                 localStorage.setItem('Token', `Bearer ${res.access_token}`)
+    //                 setToken(true)
+    //             })
+    //             .catch((error: any) => {
+    //                 console.error('Error:', error)
+    //             })
+    //     },
 
-    });
+    // });
     return (
         <div>
             <Stack
@@ -80,13 +81,13 @@ export default function Login() {
                                     console.log('Login Failed');
                                 }}
                             />
-                            <Button onClick={signout}>logout</Button> */}
+                            <Button onClick={signout}>logout</Button> 
 
                             <GoogleButton variant='outlined' onClick={() => login()} sx={{ fontSize: '12px', fontWeight: 500 }}>
                                 Sign in with Google
                                 <img src={imgGoogle} alt='google' style={{ width: '17px', marginLeft: '5px' }} />
                             </GoogleButton>
-                            {/* <Grid item sx={{ mt: 2, alignItems: 'center', alignContent: 'center' }}>
+                             <Grid item sx={{ mt: 2, alignItems: 'center', alignContent: 'center' }}>
                                 <Grid item sx={{ mt: 1, ml: 6 }}>
                                     <div className='authentication_wrapper'>
                                         <div className='authentication_block'>
